@@ -1,6 +1,6 @@
 import time
 
-def fibo_gen():
+def fibo_gen(max):
     n1 = 0
     n2 = 1
     counter = 0
@@ -15,11 +15,15 @@ def fibo_gen():
             aux = n1 + n2
             n1, n2 = n2, aux
             counter += 1
-            yield aux
+            if aux < max:
+                yield aux
+            else:
+                break
 
 
 if __name__ == '__main__':
-    fibonacci = fibo_gen()
+    maximo = int(input('Hasta donde debe de llegar la sucesión?'))
+    fibonacci = fibo_gen(maximo)
     for i in fibonacci:
         print(i)
         time.sleep(0.5)
