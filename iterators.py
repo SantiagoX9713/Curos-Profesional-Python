@@ -38,6 +38,9 @@
 import time
 
 class FiboIter():
+    def __init__(self,max):
+        self.max = max
+    
     def __iter__(self):
         self.n1 = 0
         self.n2 = 1
@@ -52,16 +55,20 @@ class FiboIter():
             self.counter += 1
             return self.n2
         else:
-            self.aux = self.n1 + self.n2
-            # self.n1 = self.n2
-            # self.n2 = self.aux
-            self.n1, self.n2 = self.n2, self.aux
-            self.counter += 1
-            return self.n2
+            while self.n2 <= self.max:
+                self.aux = self.n1 + self.n2
+                # self.n1 = self.n2
+                # self.n2 = self.aux
+                self.n1, self.n2 = self.n2, self.aux
+                self.counter += 1
+                if self.aux < self.max:
+                    return self.aux
+                else:
+                    raise StopIteration
 
 
 if __name__ == '__main__':
-    fibonacci = FiboIter()
+    fibonacci = FiboIter(100)
     for i in fibonacci:
         print(i)
         time.sleep(0.5)
