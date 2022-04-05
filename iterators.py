@@ -17,3 +17,20 @@ while True:
 # Básicamente eso es lo que hace un ciclo for
 for element in my_list:
     print(my_list.index(element) + 1)
+
+
+class EvenNumbers:
+    def __init__(self,max=None):
+        self.max = max
+    
+    def __iter__(self):
+        self.num = 0
+        return self
+    
+    def __next__(self):
+        if not self.num or self.num <= self.max:
+            result = self.num
+            self.num += 2
+            return result
+        else:
+            raise StopIteration
